@@ -1,0 +1,21 @@
+{% extends "base.html"%}
+
+{% block title  %}
+    Event Details
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            Event Details
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">{{ event.name }}</h4>
+            <p class="card-text"> Schedule: {{ event.date_from }} - {{ event.date_to }} {{ event.time_to }} - {{ event.time_to }}</p>
+            <p class="card-text">Venue: {{ event.venue }}</p>
+            <p class="card-text">Max Slots: {{ event.max_slots }}</p>
+            <p class="card-text">Description: {{ event.description }}</p>
+            
+        </div>
+    </div>
+{% endblock %}
