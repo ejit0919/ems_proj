@@ -28,6 +28,11 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{% url 'event_list'%}">Events</a>
               </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'myevent_list'%}">MyEvents</a>
+              </li>
+              {% endif %}
             </ul>
             {% if user.is_authenticated %}
               <div class="btn-group">

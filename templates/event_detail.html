@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block content %}
-    <div class="card">
+    <div class="card mt-2">
         <div class="card-header">
             Event Details
+            <a href="{% url 'event_update' event.pk %}" class="btn btn-success float-right">Edit</a>
         </div>
         <div class="card-body">
             <h4 class="card-title">{{ event.name }}</h4>
