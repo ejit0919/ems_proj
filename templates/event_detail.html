@@ -17,5 +17,8 @@
             <p class="card-text">Max Slots: {{ event.max_slots }}</p>
             <p class="card-text">Description: {{ event.description }}</p>
         </div>
+        <div class="card-footer">
+            <a href="{% url 'event_join' event.pk %}" class="btn btn-success">Join Event</a>
+        </div>
     </div>
 {% endblock %}

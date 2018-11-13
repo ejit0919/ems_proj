@@ -1,7 +1,7 @@
 {% extends "base.html"%}
 
 {% block title  %}
-    All Events
+    Created Events
 {% endblock %}
 
 {% block content %}
@@ -14,20 +14,24 @@
             <div class="card-columns">
                 {% for event in event_list %}
                 <div class="card p-3">
-                        <div class="card-header">
-                            {{ event.name }}
-                        </div>
-                        <div class="card-body">
-                            <small>{{ event.date_from }} - {{ event.date_to }} at {{ event.venue }}</small>
-                            <p class="mb-1">{{ event.description | slice:":500" }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="{% url 'event_detail' event.pk %}" class="btn btn-sm btn-primary"> More Details</a>
-                            <a href="{% url 'event_update' event.pk %}" class="btn btn-sm btn-warning">Update</a>
-                        </div>
+                    <div class="card-header">
+                        {{ event.name }}
                     </div>
-                {% endfor %}
+                    <div class="card-body">
+                        <small>{{ event.date_from }} - {{ event.date_to }} at {{ event.venue }}</small>
+                        <p class="mb-1">{{ event.description | slice:":500" }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'event_detail' event.pk %}" class="btn btn-sm btn-primary"> More Details</a>
+                        <a href="{% url 'event_update' event.pk %}" class="btn btn-sm btn-warning">Update</a>
+                    </div>
+                    </div>
+                    {% endfor %}
             </div>
+            {% for event in event_list %}
+            {% empty %}
+                    <a href="#!" class="list-group-item list-group-item-action list-group-item-warning">There are no created events yet.</a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

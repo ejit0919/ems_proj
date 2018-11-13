@@ -1,12 +1,29 @@
-<h1> {{ event }}</h1>
+{% extends "base.html" %}
 
-{% for registration in registration_list %}
-    <ul>
-        <li>
-            {{ registration.participant.username }}
-            {{ registration.participant.email }}
-            {{ registration.parents_permit }}
-            {{ registration.waiver }}
-        </li>
-    </ul>
-{% endfor %}
+{% block title %}
+All Participants
+{% endblock title %}
+
+{% block content %}
+
+<div class="card mt-3">
+    <div class="card-header">
+        <h4>All Participants  ({{ event }}) </h4>
+    </div>
+    <div class="card-body">
+        <div class="list-group">
+                {% for registration in registration_list %}
+                <a href="#">
+                    <div class="d-fle   x w-100 justify-content-between">
+                        <h5 class="mb-1"> {{ registration.participant }} </h5>
+                        <small>{{ registration.status }}</small>
+                    </div>
+                </a>
+                {% empty %}
+                    <a href="#!" class="list-group-item list-group-item-action list-group-item-warning">There are no participants yet.</a>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
