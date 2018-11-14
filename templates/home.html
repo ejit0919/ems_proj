@@ -10,43 +10,43 @@
     </h1>
 
     <div class="card mt-2">
-        <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
-                {% for event in event_list %}
-                    {% if forloop.counter == 1 %}
-                        <div class="carousel-item active">
-                            {% load static %}
-                            {% if event.image.url != null %}
-                            <img class="d-block w-100" src="{{ event.image.url }}" data-src="{{ event.image.url }}" alt="{{ event.pk }}" height="500">
-                            {% endif %}
-                            <div class="carousel-caption d-none d-md-block">
-                                <h3 class="text-dark font-weight-bold">{{ event.name }}</h3>
-                                <p class="text-dark">{{ event.description }}</p>
-                            </div>
+        <div id="carousel" class="carousel slide " data-ride="carousel">
+            {% for event in event_list %}
+                {% if forloop.counter == 1 %}
+                    <div class="carousel-item active">
+                        {% load static %}
+                        {% if event.image.url != null %}
+                        <img class="d-block w-100" src="{{ event.image.url }}" data-src="{{ event.image.url }}" alt="{{ event.pk }}" height="500">
+                        {% endif %}
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3 class="text-dark font-weight-bold">{{ event.name }}</h3>
+                            <p class="text-dark">{{ event.description }}</p>
                         </div>
-                    {% else %}
-                        <div class="carousel-item">
-                            {% load static %}
-                            {% if event.image.url != null %}
-                            <img class="d-block w-100" src="{{ event.image.url }}" data-src="{{ event.image.url }}" alt="{{ event.pk }}" height="500">
-                            {% endif %}
-                            <div class="carousel-caption d-none d-md-block">
-                                    <h3 class="bg-dark">{{ event.name }}</h3>
-                                    <p class="text-dark font-weight-bold">{{ event.description }}</p>
-                            </div>
+                    </div>
+                {% else %}
+                    <div class="carousel-item">
+                        {% load static %}
+                        {% if event.image.url != null %}
+                        <img class="d-block w-100" src="{{ event.image.url }}" data-src="{{ event.image.url }}" alt="{{ event.pk }}" height="500">
+                        {% endif %}
+                        <div class="carousel-caption d-none d-md-block">
+                                <h3 class="bg-dark">{{ event.name }}</h3>
+                                <p class="text-dark font-weight-bold">{{ event.description }}</p>
                         </div>
-                    {% endif %}
-                    {% empty %}
-                            <img class="d-block w-100" src="WebDev/11.jpg" data-src="holder.js/900x400?theme=social" alt="No Images">
-                {% endfor %}
-                
-                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                    </div>
+                {% endif %}
+                {% empty %}
+                        <img class="d-block w-100" src="WebDev/11.jpg" data-src="holder.js/900x400?theme=social" alt="No Images">
+            {% endfor %}
+            
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
 
