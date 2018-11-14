@@ -13,14 +13,24 @@ All Participants
     <div class="card-body">
         <div class="list-group">
                 {% for registration in registration_list %}
-                <a href="#">
-                    <div class="d-fle   x w-100 justify-content-between">
-                        <h5 class="mb-1"> {{ registration.participant }} </h5>
-                        <small>{{ registration.status }}</small>
+                <a href="{% url 'registration_detail' registration.pk %}">
+                    <div class="d-fle x w-100 justify-content-between">
+                        <h5 class="m-2"> 
+                            {{ registration.participant }} ({{ registration.status }}) 
+                            {% if registration.status == "Pending" %}
+                                <form action="{% url 'disapprove' registration.pk %}" method=POST>
+                                        {% csrf_token %}
+                                    <a href="{% url 'disapprove' registration.pk %}"  class="btn btn-danger float-right ml-1">Disapprove</a>
+                                <form action="{% url 'approve' registration.pk %}" method=POST>
+                                        {% csrf_token %}
+                                    <a href="{% url 'approve' registration.pk %}" class="btn btn-success float-right">Approve</a>
+                                </form>
+                            {% endif %}
+                        </h5>
                     </div>
                 </a>
                 {% empty %}
-                    <a href="#!" class="list-group-item list-group-item-action list-group-item-warning">There are no participants yet.</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning">There are no participants yet.</a>
                 {% endfor %}
         </div>
     </div>

@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+ 
     <div class="card mt-2">
         <div class="card-header">
             Created Events
@@ -14,6 +15,10 @@
             <div class="card-columns">
                 {% for event in event_list %}
                 <div class="card p-3">
+                    {% load static %}
+                    {% if event.image.url != null %}
+                    <img class="card-img-top" src="{{ event.image.url }}" alt="Card image cap">
+                    {% endif %}
                     <div class="card-header">
                         {{ event.name }}
                     </div>
@@ -23,7 +28,9 @@
                     </div>
                     <div class="card-footer">
                         <a href="{% url 'event_detail' event.pk %}" class="btn btn-sm btn-primary"> More Details</a>
+                        <a href="{% url 'event_delete' event.pk %}" class="btn btn-sm btn-danger m-1">Delete</a>
                         <a href="{% url 'event_update' event.pk %}" class="btn btn-sm btn-warning">Update</a>
+                        <a href="{% url 'registration_list' event.pk %}" class="btn btn-sm btn-success m-1">Show Participants</a>
                     </div>
                     </div>
                     {% endfor %}

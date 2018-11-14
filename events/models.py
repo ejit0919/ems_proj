@@ -12,6 +12,7 @@ class Event(models.Model):
     time_to = models.TimeField("End Time")
     venue = models.CharField("Venue", max_length=100)
     date_created = models.DateTimeField("Date Created", auto_now_add=True)
+    image = models.FileField("Image", upload_to="Uploads/", default="")
 
     creator = models.ForeignKey(to="users.Participant", on_delete=models.CASCADE)
 

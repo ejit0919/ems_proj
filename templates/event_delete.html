@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Delete Event
+{% endblock title %}
+
+{% block content %}
+
+<div class="card mt-3">
+                <div class="card-header">
+                        <h4>Delete Event</h4>
+                </div>
+        <div class="card-body">
+                <form method="post" action="">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        <div class="alert alert-warning" role="alert">
+                            <center><strong><h4>Warning!</strong><br>Are you sure you want to delete "<strong>{{ event.name }}"?</h4></strong></center>
+                          </div>
+                         <center><button type="submit" class="btn btn-danger m-5">Delete</button></center>
+                </form>
+        </div>
+</div>
+{% endblock content %}
