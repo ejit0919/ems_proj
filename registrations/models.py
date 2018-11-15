@@ -18,4 +18,4 @@ class Registration(models.Model):
         return "{}-{}".format(self.event, self.participant)
 
     def get_absolute_url(self):
-        return reverse("home")
+        return reverse("activities")

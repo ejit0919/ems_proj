@@ -7,7 +7,7 @@ from events.models import Event
 from .models import Registration
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
 
-class RegistrationListView(TemplateView, UpdateView):
+class RegistrationListView(TemplateView):
     template_name = "registration_list.html"
 
     def get_context_data(self, **kwargs):
@@ -15,7 +15,8 @@ class RegistrationListView(TemplateView, UpdateView):
         data["event"] = Event.objects.filter(pk = self.kwargs['event_pk']).first()
         data["registration_list"] = Registration.objects.filter(event =self.kwargs['event_pk'])
         return data
-        
+
+
 def approve(request, pk):
     reg = Registration.objects.filter(pk=pk).delete()
     #Registration.objects.filter(pk=pk).update(status="Approved")

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import HomePageView, EventListView, EventDetailView, MyEventListView, EventCreateView, UpdateCreateView, EventDeleteView
+from .views import HomePageView, EventListView, EventDetailView, MyEventListView, EventCreateView, UpdateCreateView, EventDeleteView, MyActivitiesListView
 
 urlpatterns = [
     path("", HomePageView.as_view(), name="home"),
@@ -9,5 +9,6 @@ urlpatterns = [
     path("events/new/", EventCreateView.as_view(), name="event_create"),
     path("events/<int:pk>/update/", UpdateCreateView.as_view(), name="event_update"),
     path("events/<int:pk>/delete/", EventDeleteView.as_view(), name="event_delete"),
-    path("events/<int:pk>/", EventDetailView.as_view(), name="event_detail")
+    path("events/<int:pk>/", EventDetailView.as_view(), name="event_detail"),
+    path("activities/my/", MyActivitiesListView.as_view(), name="activities")
 ] 

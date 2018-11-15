@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event
+from registrations.models import Registration
 
 class HomePageView(TemplateView):
     template_name= "home.html"
@@ -18,10 +19,16 @@ class EventListView(ListView):
     template_name= "event_list.html"
     contex_object_name= "event_list"
 
-class EventDetailView(DetailView):
+class EventDetailView(DetailView, TemplateView):
     model = Event
     template_name = "event_detail.html"
-    context_object_name = "event"
+
+    def get_context_data(self, **kwargs):
+        data = {
+            "event" : Event.objects.filter(pk=self.kwargs["pk"]).first(),
+            "registration" : Registration.objects.filter(participant=self.request.user, event_id=self.kwargs["pk"]).first()
+            }
+        return data
 
 class MyEventListView(ListView):
     model = Event
@@ -54,3 +61,15 @@ class EventDeleteView(LoginRequiredMixin, DeleteView):
     model = Event
     template_name = "event_delete.html"
     success_url = reverse_lazy("myevent_list")
+
+class MyActivitiesListView(ListView, DeleteView):
+    model = Registration
+    template_name = "myactivities_list.html"
+    
+    def get_context_data(self, **kwargs):
+        data = {
+            "registration_list" : Registration.objects.filter(participant=self.request.user),
+            "event_list" : Event.objects.all()
+            }
+        return data
+

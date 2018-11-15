@@ -32,6 +32,9 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{% url 'myevent_list'%}">MyEvents</a>
               </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'activities'%}">MyActivities</a>
+                </li>
               {% endif %}
             </ul>
             {% if user.is_authenticated %}

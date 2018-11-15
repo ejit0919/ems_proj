@@ -5,9 +5,6 @@
 {% endblock %}
 
 {% block content %}
-    <h1>
-        Welcome to the SHS Events Management System
-    </h1>
 
     <div class="card mt-2">
         <div id="carousel" class="carousel slide " data-ride="carousel">
@@ -15,9 +12,11 @@
                 {% if forloop.counter == 1 %}
                     <div class="carousel-item active">
                         {% load static %}
-                        {% if event.image.url != null %}
-                        <img class="d-block w-100" src="{{ event.image.url }}" data-src="{{ event.image.url }}" alt="{{ event.pk }}" height="500">
-                        {% endif %}
+                        <a href="{% url 'event_detail' event.pk %}">
+                            {% if event.image.url != null %}
+                            <img class="d-block w-100" src="{{ event.image.url }}" data-src="{{ event.image.url }}" alt="{{ event.pk }}" height="500">
+                            {% endif %}
+                        </a>
                         <div class="carousel-caption d-none d-md-block">
                             <h3 class="text-dark font-weight-bold">{{ event.name }}</h3>
                             <p class="text-dark">{{ event.description }}</p>
@@ -26,13 +25,16 @@
                 {% else %}
                     <div class="carousel-item">
                         {% load static %}
-                        {% if event.image.url != null %}
-                        <img class="d-block w-100" src="{{ event.image.url }}" data-src="{{ event.image.url }}" alt="{{ event.pk }}" height="500">
-                        {% endif %}
+                        <a href="{% url 'event_detail' event.pk %}">
+                            {% if event.image.url != null %}
+                            <img class="d-block w-100" src="{{ event.image.url }}" data-src="{{ event.image.url }}" alt="{{ event.pk }}" height="500">
+                            {% endif %}
+                        </a>
                         <div class="carousel-caption d-none d-md-block">
                                 <h3 class="bg-dark">{{ event.name }}</h3>
                                 <p class="text-dark font-weight-bold">{{ event.description }}</p>
                         </div>
+                        
                     </div>
                 {% endif %}
                 {% empty %}

@@ -6,15 +6,19 @@
 
 {% block content %}
     
-  <div class="card">
+  <div class="card m-2">
     <div class="card-header">
-      <h4>Registration Detail ({{ registration.participant }})</h4>
+      <h4>Registration Details</h4>
     </div>
     <div class="card-body">
       <h4 class="card-title">{{ registration.event }}</h4>
-      <p class="card-text">
-        {{ registration.status }}
+      <p class="card-text">Participant: {{ registration.participant }}</p>
+      <p class="card-text">Requirements: 
+        <a href="{{ registration.parents_permit.url }}">Parent's Permit</a> , 
+        <a href="{{ registration.waiver.url }}">Waiver</a>
       </p>
+      <p class="card-text">Parent's Contact Number: {{ registration.parents_contact_number }}</p>
+      <p class="card-text">Status: {{ registration.status }}</p>
     </div>
   </div>
 {% endblock content %}

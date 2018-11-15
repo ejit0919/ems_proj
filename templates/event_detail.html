@@ -7,16 +7,17 @@
 {% block content %}
     <div class="card mt-2">
         <div class="card-header">
-            Event Details
+            <h4>Event Details
             {% if user.is_authenticated and user == event.creator %}
             <a href="{% url 'event_delete' event.pk %}" class="btn btn-danger float-right ml-1">Delete</a>
             <a href="{% url 'event_update' event.pk %}" class="btn btn-success float-right">Edit</a>
             {% endif %}
+            </h4>
         </div>
         <div class="card-body">
             {% load static %}
             {% if event.image.url != null %}
-            <img class="card-img-top" src="{{ event.image.url }}" alt="{{ event.image.url }}">
+            <img class="card-img-top" src="{{ event.image.url }}" alt="{{ event.name }}" height="400">
             {% endif %}
             <h4 class="card-title">{{ event.name }}</h4>
             <p class="card-text"> Schedule: {{ event.date_from }} - {{ event.date_to }} {{ event.time_to }} - {{ event.time_to }}</p>
@@ -26,9 +27,13 @@
         </div>
         {% if user.is_authenticated %}
         <div class="card-footer">
-            <a href="{% url 'event_join' event.pk %}" class="btn btn-success">Join Event</a>
+            {% if user == registration.participant %}
+                <a href="{% url 'registration_detail' registration.pk %}" class="btn btn-success">View Registration Status</a>
+            {% else %}
+                <a href="{% url 'event_join' event.pk %}" class="btn btn-success">Join Event</a>
+            {% endif %}
             {% if user == event.creator %}
-            <a href="{% url 'registration_list' event.pk %}" class="btn btn-success">Show Participants</a>
+                <a href="{% url 'registration_list' event.pk %}" class="btn btn-success">Show Participants</a>
             {% endif %}
         </div>
         {% endif %}

@@ -1,0 +1,49 @@
+{% extends "base.html"%}
+
+{% block title  %}
+    Created Events
+{% endblock %}
+
+{% block content %}
+ 
+    <div class="card mt-2">
+        <div class="card-header">
+            <h4>Registered Events</h4>
+        </div>
+        <div class="card-body">
+            <div class="card-columns">
+                {% for event in event_list %}
+                    {% for registration in registration_list %}
+                        {% if event.pk == registration.event_id %}
+                            <div class="card">
+                                {% load static %}
+                                {% if event.image.url != null %}
+                                <img class="card-img-top" src="{{ event.image.url }}" alt="{{ event.name }}">
+                                {% endif %}
+                                <div class="card-header">
+                                    {{ event.name }}
+                                </div>
+                                <div class="card-body">
+                                    <small>{{ event.date_from }} - {{ event.date_to }} at {{ event.venue }}</small>
+                                    <p class="mb-1">{{ event.description | slice:":500" }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="d-flex w-100 justify-content-between">
+                                            <p class="mb-1">Status: {{ registration.status }}</p>                
+                                            <p><a href="{% url 'event_detail' event.pk %}"><button class="btn btn-info btn-sm">View Attendance Summary</button></a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            {% for event in event_list %}
+            {% empty %}
+                    <a href="#!" class="list-group-item list-group-item-action list-group-item-warning">There are no registered events yet.</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+

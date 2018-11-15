@@ -8,8 +8,9 @@
  
     <div class="card mt-2">
         <div class="card-header">
-            Created Events
-            <a href="{% url 'event_create' %}" class="btn btn-success float-right"> Add New</a>
+            <h4>Created Events
+                <a href="{% url 'event_create' %}" class="btn btn-success float-right"> Add New</a>
+            </h4>
         </div>
         <div class="card-body">
             <div class="card-columns">
@@ -27,9 +28,9 @@
                         <p class="mb-1">{{ event.description | slice:":500" }}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{% url 'event_detail' event.pk %}" class="btn btn-sm btn-primary"> More Details</a>
+                        <a href="{% url 'event_detail' event.pk %}" class="btn btn-sm btn-primary m-1"> More Details</a>
                         <a href="{% url 'event_delete' event.pk %}" class="btn btn-sm btn-danger m-1">Delete</a>
-                        <a href="{% url 'event_update' event.pk %}" class="btn btn-sm btn-warning">Update</a>
+                        <a href="{% url 'event_update' event.pk %}" class="btn btn-sm btn-warning m-1">Update</a>
                         <a href="{% url 'registration_list' event.pk %}" class="btn btn-sm btn-success m-1">Show Participants</a>
                     </div>
                     </div>

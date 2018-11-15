@@ -18,10 +18,10 @@ All Participants
                         <h5 class="m-2"> 
                             {{ registration.participant }} ({{ registration.status }}) 
                             {% if registration.status == "Pending" %}
-                                <form action="{% url 'disapprove' registration.pk %}" method=POST>
+                                <form action="{% url 'disapprove' registration.pk %}" enctype="multipart/form-data" method=POST>
                                         {% csrf_token %}
                                     <a href="{% url 'disapprove' registration.pk %}"  class="btn btn-danger float-right ml-1">Disapprove</a>
-                                <form action="{% url 'approve' registration.pk %}" method=POST>
+                                <form action="{% url 'approve' registration.pk %}" enctype="multipart/form-data" method=POST>
                                         {% csrf_token %}
                                     <a href="{% url 'approve' registration.pk %}" class="btn btn-success float-right">Approve</a>
                                 </form>
