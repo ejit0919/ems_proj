@@ -6,34 +6,94 @@ All Participants
 
 {% block content %}
 
-<div class="card mt-3">
-    <div class="card-header">
-        <h4>All Participants  ({{ event }}) </h4>
-    </div>
-    <div class="card-body">
-        <div class="list-group">
-                {% for registration in registration_list %}
-                <a href="{% url 'registration_detail' registration.pk %}">
-                    <div class="d-fle x w-100 justify-content-between">
-                        <h5 class="m-2"> 
-                            {{ registration.participant }} ({{ registration.status }}) 
-                            {% if registration.status == "Pending" %}
-                                <form action="{% url 'disapprove' registration.pk %}" enctype="multipart/form-data" method=POST>
-                                        {% csrf_token %}
-                                    <a href="{% url 'disapprove' registration.pk %}"  class="btn btn-danger float-right ml-1">Disapprove</a>
-                                <form action="{% url 'approve' registration.pk %}" enctype="multipart/form-data" method=POST>
-                                        {% csrf_token %}
-                                    <a href="{% url 'approve' registration.pk %}" class="btn btn-success float-right">Approve</a>
-                                </form>
-                            {% endif %}
-                        </h5>
+    <div class="row">
+        <div class="col-lg-12 mx-auto mt-3">
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4>Pending Registrations</h4>                     
+                        <h4>Event: {{ registration.event }}</h4>
                     </div>
-                </a>
-                {% empty %}
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning">There are no participants yet.</a>
-                {% endfor %}
+                </div>
+                {% if registration_list == null %}
+                    <a href="#!" class="list-group-item list-group-item-action list-group-item-warning">There are no created events yet.</a>
+                {% else %}
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th>#</th>
+                        <th>Participant Name</th>
+                        <th>Designation</th>
+                        <th>Contact Info</th>
+                        <th>Registration Status</th>
+                        <!-- <th>Actions</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for registration in registration_list %}
+                            <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ registration.participant }}</td>
+                            <td>{{ registration.designation }}</td>
+                            
+                            <td>{{ registration.status }}</td>
+                            <td>
+                                <form method="post" action="">
+                                    <input type='hidden' name='csrfmiddlewaretoken' value='7nZBuNcrLgyaMJAjwviF5MyrhdIqRkSeZYsGVdMyqB02sLvTAKJmf35EWR6OQhUk' />
+                                        <a href="#"><button type="button" class="btn btn-sm btn-primary">Info</button></a>
+                                
+                                    <button type="submit" name="approve" class="btn btn-sm btn-success">Approve</button>
+                                        <button type="submit" class="btn btn-sm btn-danger">Disapprove</button>
+                                </form>
+                            </td>
+                            </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4>Official Participants</h4> 
+                        <a href="/shsems/events/12/attendance/"><button type="button" class="btn btn-outline btn-info">View Attendance Summary</button></a>
+                    </div>
+                </div>
+              {% if registration_list == null %}
+                <a href="#!" class="list-group-item list-group-item-action list-group-item-warning">There are no created events yet.</a>
+              {% else %}
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th>#</th>
+                        <th>Participant Name</th>
+                        <th>Designation</th>
+                        <th>Contact Info</th>
+                        <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for registration in registration_list %}
+                        <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ registration.participant }}</td>
+                        <td>Student</td>
+                        <td><code>{{ registration.email }}</code> <br>
+                            <code>{{ registration.contact_number }}</code></td>                           
+                        <td>
+                            <a href="#"><button type="button" class="btn btn-sm btn-primary">View Registration Info</button></a>
+                            <a href="#!"><button type="button" class="btn btn-sm btn-disabled">View Attendance</button></a>
+                        </td> 
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock content %}

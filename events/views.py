@@ -26,8 +26,11 @@ class EventDetailView(DetailView, TemplateView):
     def get_context_data(self, **kwargs):
         data = {
             "event" : Event.objects.filter(pk=self.kwargs["pk"]).first(),
-            "registration" : Registration.objects.filter(participant=self.request.user, event_id=self.kwargs["pk"]).first()
+            "registration" : ""
             }
+        if str(self.request.user) != "AnonymousUser":
+            data["registration"] = Registration.objects.filter(participant=self.request.user, event_id=self.kwargs["pk"]).first()
+        
         return data
 
 class MyEventListView(ListView):

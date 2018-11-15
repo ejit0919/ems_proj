@@ -5,6 +5,7 @@ from django.shortcuts import render, render_to_response, get_object_or_404
 from . import models
 from events.models import Event
 from .models import Registration
+from users.models import Participant
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
 
 class RegistrationListView(TemplateView):
@@ -15,7 +16,6 @@ class RegistrationListView(TemplateView):
         data["event"] = Event.objects.filter(pk = self.kwargs['event_pk']).first()
         data["registration_list"] = Registration.objects.filter(event =self.kwargs['event_pk'])
         return data
-
 
 def approve(request, pk):
     reg = Registration.objects.filter(pk=pk).delete()
@@ -37,7 +37,13 @@ class JoinEventView(CreateView):
         form.instance.participant = self.request.user
         return super().form_valid(form)
 
-class RegistrationDetailView(DetailView):
+class RegistrationDetailView(DetailView, TemplateView):
     model = Registration
     template_name = "registration_detail.html"
-    context_object_name = "registration"
+
+    def get_context_data(self, **kwargs):
+        data = {
+            "registration" : Registration.objects.filter(event =self.kwargs['pk']).first(),
+            "participant" : Participant.objects.filter(event=Registration.objects.filter(event=self.kwargs['pk']).first()).first()
+        }
+        return data

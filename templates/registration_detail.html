@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
       <h4 class="card-title">{{ registration.event }}</h4>
-      <p class="card-text">Participant: {{ registration.participant }}</p>
+      <p class="card-text">Participant: {{ registration.participant }} ({{ participant.email }}, {{ participant.contact_number }})</p>
       <p class="card-text">Requirements: 
         <a href="{{ registration.parents_permit.url }}">Parent's Permit</a> , 
         <a href="{{ registration.waiver.url }}">Waiver</a>

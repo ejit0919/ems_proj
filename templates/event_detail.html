@@ -8,9 +8,11 @@
     <div class="card mt-2">
         <div class="card-header">
             <h4>Event Details
-            {% if user.is_authenticated and user == event.creator %}
-            <a href="{% url 'event_delete' event.pk %}" class="btn btn-danger float-right ml-1">Delete</a>
-            <a href="{% url 'event_update' event.pk %}" class="btn btn-success float-right">Edit</a>
+            {% if user.is_authenticated %}
+                {% if user == event.creator %}
+                    <a href="{% url 'event_delete' event.pk %}" class="btn btn-danger float-right ml-1">Delete</a>
+                    <a href="{% url 'event_update' event.pk %}" class="btn btn-success float-right">Edit</a>
+                {% endif %}
             {% endif %}
             </h4>
         </div>
@@ -20,7 +22,7 @@
             <img class="card-img-top" src="{{ event.image.url }}" alt="{{ event.name }}" height="400">
             {% endif %}
             <h4 class="card-title">{{ event.name }}</h4>
-            <p class="card-text"> Schedule: {{ event.date_from }} - {{ event.date_to }} {{ event.time_to }} - {{ event.time_to }}</p>
+            <p class="card-text">Schedule: {{ event.date_from }} - {{ event.date_to }} {{ event.time_to }} - {{ event.time_to }}</p>
             <p class="card-text">Venue: {{ event.venue }}</p>
             <p class="card-text">Max Slots: {{ event.max_slots }}</p>
             <p class="card-text">Description: {{ event.description }}</p>
