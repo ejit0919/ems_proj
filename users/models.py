@@ -10,7 +10,7 @@ class Participant(AbstractUser):
     FACULTY = 2
     STAFF = 3
     DESIGNATIONS = ((STUDENTS, 'Student'), (FACULTY, 'Faculty'), (STAFF, 'Staff'))
-    name = models.CharField("", max_length = 50, default="", choices=DESIGNATIONS)
+    designation = models.CharField("", max_length = 7, default="", choices=DESIGNATIONS)
 
     def __str__(self):
         return self.username

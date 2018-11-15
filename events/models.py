@@ -19,7 +19,7 @@ class Event(models.Model):
     INSTITUTIONAL = 1
     SPECIAL = 2
     EVENT_TYPES = ((INSTITUTIONAL, 'Institutional'), (SPECIAL, 'Special'))
-    name = models.CharField("Event Type", max_length=14, default="", choices=EVENT_TYPES)
+    event_type = models.CharField("Event Type", max_length=14, default="", choices=EVENT_TYPES)
 
     def __str__(self):
         return self.name

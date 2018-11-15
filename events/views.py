@@ -44,7 +44,7 @@ class MyEventListView(ListView):
 
 class EventCreateView(CreateView):
     model = Event
-    fields = ['name', 'description', 'image', 'max_slots', 'date_from', 'date_to', 'time_from', 'time_to', 'venue']
+    fields = ['name', 'description', 'image', 'event_type', 'max_slots', 'date_from', 'date_to', 'time_from', 'time_to', 'venue']
     template_name = "event_create.html"
 
     def form_valid(self, form):
@@ -53,7 +53,7 @@ class EventCreateView(CreateView):
 
 class UpdateCreateView(UpdateView):
     model = Event
-    fields = ['name', 'description', 'image', 'max_slots', 'date_from', 'date_to', 'time_from', 'time_to', 'venue']
+    fields = ['name', 'description', 'image', 'event_type', 'max_slots', 'date_from', 'date_to', 'time_from', 'time_to', 'venue']
     template_name = "event_update.html"
 
     def form_valid(self, form):
