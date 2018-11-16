@@ -27,6 +27,8 @@
                         </div>
                     </div>
                 </a>
+                {% empty %}
+                    <a href="#!" class="list-group-item list-group-item-action list-group-item-warning">There are no created events yet.</a>
                 {% endfor %}
             </div>
         </div>
