@@ -11,7 +11,7 @@ class Participant(AbstractUser):
     FACULTY = 3
     STAFF = 4
     DESIGNATIONS = ((BLANK, '-------'), (STUDENTS, 'Student'), (FACULTY, 'Faculty'), (STAFF, 'Staff'))
-    designation = models.IntegerField("Designation", max_length = 7, default="", choices=DESIGNATIONS)
+    designation = models.IntegerField("Designation", default="", choices=DESIGNATIONS)
 
     def __str__(self):
         return self.username

@@ -21,7 +21,7 @@ class Event(models.Model):
     SPECIAL = 3
 
     EVENT_TYPES = ((BLANK, '-------'), (INSTITUTIONAL, 'Institutional'), (SPECIAL, 'Special'))
-    event_type = models.IntegerField("Event Type", max_length=14, default="", choices=EVENT_TYPES)
+    event_type = models.IntegerField("Event Type", default="", choices=EVENT_TYPES)
 
     def __str__(self):
         return self.name

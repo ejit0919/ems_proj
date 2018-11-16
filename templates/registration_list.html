@@ -61,7 +61,7 @@ All Participants
                 <div class="card-header">
                     <div class="d-flex w-100 justify-content-between">
                         <h4>Official Participants</h4> 
-                        <a href="#"><button type="button" class="btn btn-outline btn-info">View Attendance Summary</button></a>
+                        <a href="{% url 'attendance_events' event.pk %}"><button type="button" class="btn btn-outline btn-info">View Attendance Summary</button></a>
                     </div>
                 </div>
               {% if registration_list == null %}
