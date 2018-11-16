@@ -15,11 +15,13 @@ class Event(models.Model):
     image = models.FileField("Image", upload_to="Uploads/", default="")
 
     creator = models.ForeignKey(to="users.Participant", on_delete=models.CASCADE)
-    
-    INSTITUTIONAL = 1
-    SPECIAL = 2
-    EVENT_TYPES = ((INSTITUTIONAL, 'Institutional'), (SPECIAL, 'Special'))
-    event_type = models.CharField("Event Type", max_length=14, default="", choices=EVENT_TYPES)
+
+    BLANK = 1   
+    INSTITUTIONAL = 2
+    SPECIAL = 3
+
+    EVENT_TYPES = ((BLANK, '-------'), (INSTITUTIONAL, 'Institutional'), (SPECIAL, 'Special'))
+    event_type = models.IntegerField("Event Type", max_length=14, default="", choices=EVENT_TYPES)
 
     def __str__(self):
         return self.name

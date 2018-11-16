@@ -29,8 +29,8 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="d-flex w-100 justify-content-between">
-                                            <p class="mb-1">Status: {{ registration.status }}</p>                
-                                            <p><a href="{% url 'event_detail' event.pk %}"><button class="btn btn-info btn-sm">View Attendance Summary</button></a></p>
+                                        <p class="mb-1">Status: {{ registration.status }}</p>                
+                                        <p><a href="#"><button class="btn btn-info btn-sm">View Attendance Summary</button></a></p>
                                     </div>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                     {% endfor %}
                 {% endfor %}
             </div>
-            {% for event in event_list %}
+            {% for registration in registration_list %}
             {% empty %}
                     <a href="#!" class="list-group-item list-group-item-action list-group-item-warning">There are no registered events yet.</a>
             {% endfor %}

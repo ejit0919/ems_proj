@@ -6,4 +6,4 @@ from .models import Participant
 class ParticipantCreationForm(UserCreationForm):
     class Meta:
         model = Participant
-        fields = ('username', 'email', 'first_name', 'last_name', 'contact_number')
+        fields = ('username', 'email', 'designation', 'first_name', 'last_name', 'contact_number')

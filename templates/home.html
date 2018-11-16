@@ -7,7 +7,7 @@
 {% block content %}
 
     <div class="card mt-2">
-        <div id="carousel" class="carousel slide " data-ride="carousel">
+        <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
             {% for event in event_list %}
                 {% if forloop.counter == 1 %}
                     <div class="carousel-item active">
@@ -18,7 +18,7 @@
                             {% endif %}
                         </a>
                         <div class="carousel-caption d-none d-md-block">
-                            <h3 class="text-dark font-weight-bold">{{ event.name }}</h3>
+                            <h3 class="text-dark">{{ event.name }}</h3>
                             <p class="text-dark">{{ event.description }}</p>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                             {% endif %}
                         </a>
                         <div class="carousel-caption d-none d-md-block">
-                                <h3 class="bg-dark">{{ event.name }}</h3>
+                                <h3 class="text-dark">{{ event.name }}</h3>
                                 <p class="text-dark font-weight-bold">{{ event.description }}</p>
                         </div>
                         

@@ -11,4 +11,4 @@ urlpatterns = [
     path("events/<int:pk>/delete/", EventDeleteView.as_view(), name="event_delete"),
     path("events/<int:pk>/", EventDetailView.as_view(), name="event_detail"),
     path("activities/my/", MyActivitiesListView.as_view(), name="activities")
-] 
+]

@@ -13,7 +13,7 @@ All Participants
                 <div class="card-header">
                     <div class="d-flex w-100 justify-content-between">
                         <h4>Pending Registrations</h4>                     
-                        <h4>Event: {{ registration.event }}</h4>
+                        <h4>Event: {{ event.name }}</h4>
                     </div>
                 </div>
                 {% if registration_list == null %}
@@ -40,11 +40,13 @@ All Participants
                             <td>{{ registration.status }}</td>
                             <td>
                                 <form method="post" action="">
-                                    <input type='hidden' name='csrfmiddlewaretoken' value='7nZBuNcrLgyaMJAjwviF5MyrhdIqRkSeZYsGVdMyqB02sLvTAKJmf35EWR6OQhUk' />
-                                        <a href="#"><button type="button" class="btn btn-sm btn-primary">Info</button></a>
-                                
-                                    <button type="submit" name="approve" class="btn btn-sm btn-success">Approve</button>
-                                        <button type="submit" class="btn btn-sm btn-danger">Disapprove</button>
+                                    <input type='hidden' name='csrfmiddlewaretoken' />
+                                    <a href="{% url 'registration_detail' registration.pk %}"><button type="button" class="btn btn-sm btn-primary">Info</button></a>
+                                    <form method="post" enctype="multipart/form-data" name="id" value="{{ registration.participant_id }}">
+                                        {% csrf_token %}
+                                        <button type="submit"class="btn btn-sm btn-success" name="opt" value="approve">Approve</button>
+                                        <button type="submit" class="btn btn-sm btn-danger" name="opt" value="disapprove">Disapprove</button>
+                                    </form>
                                 </form>
                             </td>
                             </tr>
@@ -59,7 +61,7 @@ All Participants
                 <div class="card-header">
                     <div class="d-flex w-100 justify-content-between">
                         <h4>Official Participants</h4> 
-                        <a href="/shsems/events/12/attendance/"><button type="button" class="btn btn-outline btn-info">View Attendance Summary</button></a>
+                        <a href="#"><button type="button" class="btn btn-outline btn-info">View Attendance Summary</button></a>
                     </div>
                 </div>
               {% if registration_list == null %}
@@ -77,6 +79,7 @@ All Participants
                     </thead>
                     <tbody>
                         {% for registration in registration_list %}
+                        {% if registration.status == "Approved" %}
                         <tr>
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>{{ registration.participant }}</td>
@@ -88,6 +91,7 @@ All Participants
                             <a href="#!"><button type="button" class="btn btn-sm btn-disabled">View Attendance</button></a>
                         </td> 
                         </tr>
+                        {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>
